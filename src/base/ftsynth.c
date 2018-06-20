@@ -22,7 +22,9 @@
 #include FT_INTERNAL_OBJECTS_H
 #include FT_OUTLINE_H
 #include FT_BITMAP_H
-
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+#include "ftinf.h"
+#endif
 
   /*************************************************************************/
   /*                                                                       */
@@ -93,7 +95,10 @@
     FT_Face     face;
     FT_Error    error;
     FT_Pos      xstr, ystr;
-
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+    FT_Bool use_various_tweaks = FALSE;
+    if( ftinf ) use_various_tweaks=ftinf->use_various_tweaks;
+#endif
 
     if ( !slot )
       return;
@@ -111,8 +116,16 @@
     ystr = xstr;
 
     if ( slot->format == FT_GLYPH_FORMAT_OUTLINE )
+    {
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+      if ( use_various_tweaks )
+        (void)FT_Outline_EmboldenXY( &slot->outline,
+                                     xstr,
+                                     FT_PIX_FLOOR( ystr ) );
+      else
+#endif
       FT_Outline_EmboldenXY( &slot->outline, xstr, ystr );
-
+    }
     else /* slot->format == FT_GLYPH_FORMAT_BITMAP */
     {
       /* round to full pixels */
@@ -150,6 +163,9 @@
 
     slot->metrics.width        += xstr;
     slot->metrics.height       += ystr;
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+    if ( !use_various_tweaks )
+#endif
     slot->metrics.horiAdvance  += xstr;
     slot->metrics.vertAdvance  += ystr;
     slot->metrics.horiBearingY += ystr;

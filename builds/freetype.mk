@@ -164,6 +164,7 @@ FT_CFLAGS  = $(CPPFLAGS) \
              $(CFLAGS) \
              $DFT2_BUILD_LIBRARY \
              $DFT_CONFIG_MODULES_H="<ftmodule.h>" \
+			 $D_GNU_SOURCE \
              $(FTOPTION_FLAG)
 
 

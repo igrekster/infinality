@@ -5794,6 +5794,7 @@
 
       if ( exc->ignore_x_mode                                 &&
            exc->GS.freeVector.x != 0                          &&
+           exc->GS.freeVector.y == 0                          &&
            !( exc->sph_tweak_flags & SPH_TWEAK_NORMAL_ROUND ) )
         control_value_cutin = 0;
     }

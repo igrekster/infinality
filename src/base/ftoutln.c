@@ -29,7 +29,9 @@
 #include FT_INTERNAL_CALC_H
 #include FT_INTERNAL_DEBUG_H
 #include FT_TRIGONOMETRY_H
-
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+#include "ftinf.h"
+#endif
 
   /*************************************************************************/
   /*                                                                       */
@@ -914,7 +916,13 @@
     FT_Vector*  points;
     FT_Int      c, first, last;
     FT_Int      orientation;
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+    FT_Bool use_various_tweaks = FALSE;
+    if( ftinf ) use_various_tweaks=ftinf->use_various_tweaks;
 
+    if ( use_various_tweaks )
+      ystrength = FT_PIX_FLOOR ( ystrength );
+#endif
 
     if ( !outline )
       return FT_THROW( Invalid_Outline );

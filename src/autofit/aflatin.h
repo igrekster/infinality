@@ -64,6 +64,9 @@ FT_BEGIN_HEADER
 
 #define AF_LATIN_MAX_WIDTHS  16
 
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+    extern FT_Pos infinality_cur_width;
+#endif
 
 #define AF_LATIN_BLUE_ACTIVE      ( 1U << 0 ) /* zone height is <= 3/4px   */
 #define AF_LATIN_BLUE_TOP         ( 1U << 1 ) /* we have a top blue zone   */

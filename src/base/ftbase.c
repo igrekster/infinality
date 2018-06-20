@@ -37,6 +37,9 @@
 #include "ftstream.c"
 #include "fttrigon.c"
 #include "ftutil.c"
+#ifdef FT_CONFIG_OPTION_INFINALITY_PATCHSET
+#include "ftinf.c"
+#endif
 
 
 /* END */

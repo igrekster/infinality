@@ -122,7 +122,7 @@ FT_BEGIN_HEADER
   /* rendering technology that produces excellent output without LCD       */
   /* filtering.                                                            */
   /*                                                                       */
-/* #define FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
+#define FT_CONFIG_OPTION_SUBPIXEL_RENDERING
 
 
   /*************************************************************************/
@@ -600,6 +600,17 @@ FT_BEGIN_HEADER
   /*                                                                       */
 #define TT_CONFIG_OPTION_BYTECODE_INTERPRETER
 
+  /*************************************************************************/
+  /*                                                                       */
+  /* Define FT_CONFIG_OPTION_INFINALITY_PATCHSET if you want to enable     */
+  /* all additional infinality patches, which are configured via env       */
+  /* variables.                                                            */
+  /*                                                                       */
+  /*   This option requires TT_CONFIG_OPTION_SUBPIXEL_HINTING to           */
+  /*   defined.                                                            */
+  /*                                                                       */
+#define FT_CONFIG_OPTION_INFINALITY_PATCHSET
+
 
   /*************************************************************************/
   /*                                                                       */
@@ -658,8 +669,8 @@ FT_BEGIN_HEADER
   /* [1] https://www.microsoft.com/typography/cleartype/truetypecleartype.aspx */
   /*                                                                       */
 /* #define TT_CONFIG_OPTION_SUBPIXEL_HINTING  1         */
-#define TT_CONFIG_OPTION_SUBPIXEL_HINTING  2
-/* #define TT_CONFIG_OPTION_SUBPIXEL_HINTING  ( 1 | 2 ) */
+/* #define TT_CONFIG_OPTION_SUBPIXEL_HINTING  1 */
+#define TT_CONFIG_OPTION_SUBPIXEL_HINTING  ( 1 | 2 )
 
 
   /*************************************************************************/
